@@ -47,7 +47,7 @@ class TrellisValetDriver extends ValetDriver
     public function frontControllerPath($sitePath, $siteName, $uri)
     {
         if (0 === strpos($uri, '/wp/')) {
-            return $sitePath . $uri;
+            return $sitePath . '/site/web' . $uri;
         }
         return $sitePath . '/site/web/index.php';
     }
