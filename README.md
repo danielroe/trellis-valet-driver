@@ -10,10 +10,9 @@ Download `TrellisValetDriver.php` and place it in your `~/.valet/Drivers` folder
 
 This assumes your Trellis directory structure looks like:
 
-    example.com/      # → Root folder for the project
+    example/      # → Root folder for the project
     ├── trellis/      # → Your clone of this repository
     └── site/         # → A Bedrock-based WordPress site
         └── web/
             ├── app/  # → WordPress content directory (themes, plugins, etc.)
             └── wp/   # → WordPress core (don't touch!)
-
