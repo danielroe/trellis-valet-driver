@@ -8,15 +8,14 @@ class TrellisValetDriver extends ValetDriver
      * @param  string $sitePath
      * @param  string $siteName
      * @param  string $uri
-     * @return void
+     * @return bool
      */
     public function serves($sitePath, $siteName, $uri)
     {
-        return (
-            file_exists("$sitePath/site/config/application.php")
-            && file_exists("$sitePath/site/web/wp-config.php")
-            && is_dir("$sitePath/site/web/app/")
-        );
+        return file_exists($sitePath . '/site/web/app/mu-plugins/bedrock-autoloader.php') ||
+              (is_dir($sitePath . '/site/web/app/') &&
+               file_exists($sitePath . '/site/web/wp-config.php') &&
+               file_exists($sitePath . '/site/config/application.php'));
     }
 
     /**
@@ -29,8 +28,8 @@ class TrellisValetDriver extends ValetDriver
      */
     public function isStaticFile($sitePath, $siteName, $uri)
     {
-        $staticFilePath = $sitePath . '/site/web/' . $uri;
-        if (file_exists($staticFilePath) && !is_dir($staticFilePath)) {
+        $staticFilePath = $sitePath . '/site/web' . $uri;
+        if ($this->isActualFile($staticFilePath)) {
             return $staticFilePath;
         }
         return false;
@@ -46,9 +45,27 @@ class TrellisValetDriver extends ValetDriver
      */
     public function frontControllerPath($sitePath, $siteName, $uri)
     {
-        if (0 === strpos($uri, '/wp/')) {
-            return $sitePath . '/site/web' . $uri;
+        $_SERVER['PHP_SELF'] = $uri;
+        if (strpos($uri, '/wp/') === 0) {
+            return is_dir($sitePath . '/site/web' . $uri)
+                            ? $sitePath . '/site/web' . $this->forceTrailingSlash($uri) . '/index.php'
+                            : $sitePath . '/site/web' . $uri;
         }
         return $sitePath . '/site/web/index.php';
+    }
+
+    /**
+     * Redirect to uri with trailing slash.
+     *
+     * @param  string $uri
+     * @return string
+     */
+    private function forceTrailingSlash($uri)
+    {
+        if (substr($uri, -1 * strlen('/wp/wp-admin')) == '/wp/wp-admin') {
+            header('Location: ' . $uri . '/');
+            die;
+        }
+        return $uri;
     }
 }
