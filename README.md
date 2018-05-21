@@ -1,6 +1,6 @@
 # danielroe/trellis-valet-driver
 
-A driver for [Laravel Valet](https://github.com/laravel/valet) or [Valet Linux](https://github.com/cpriego/valet-linux) that supports the default 
+A driver for [Laravel Valet](https://github.com/laravel/valet) or [Valet Linux](https://github.com/cpriego/valet-linux) that supports the default
 [Trellis](https://roots.io/trellis)/[Bedrock](https://roots.io/bedrock/)
 install.
 
@@ -16,3 +16,5 @@ This assumes your Trellis directory structure looks like:
         └── web/
             ├── app/  # → WordPress content directory (themes, plugins, etc.)
             └── wp/   # → WordPress core (don't touch!)
+
+If you're migrating from Trellis, you'll need to create a `site/.env` file. See [here](https://roots.io/bedrock/docs/environment-variables/) for more information.
