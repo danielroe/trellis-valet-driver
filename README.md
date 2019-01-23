@@ -6,7 +6,7 @@ install.
 
 ## Installing
 
-Download `TrellisValetDriver.php` and place it in your `~/.valet/Drivers` folder. Now your Trellis/Bedrock folders will display correctly - no configuration required.
+Download `TrellisValetDriver.php` and place it in your `~/.config/Valet/Drivers` folder. Now your Trellis/Bedrock folders will display correctly - no configuration required.
 
 This assumes your Trellis directory structure looks like:
 
