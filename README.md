@@ -17,4 +17,4 @@ This assumes your Trellis directory structure looks like:
             ├── app/  # → WordPress content directory (themes, plugins, etc.)
             └── wp/   # → WordPress core (don't touch!)
 
-If you're migrating from Trellis, you'll need to create a `site/.env` file. See [here](https://roots.io/bedrock/docs/environment-variables/) for more information. [TangRufus](https://github.com/TangRufus) has written [Enveigle](https://github.com/ItinerisLtd/enveigle) which creates Bedrock's .env file from the settings in your `/trellis/group_vars/` directory. Useful if you're joining an existing Trellis project or want to use Trellis for deploys.
+If you're migrating from Trellis, you'll need to create a `site/.env` file. See [here](https://roots.io/bedrock/docs/environment-variables/) for more information. [TangRufus](https://github.com/TangRufus) has written [Enveigle](https://github.com/ItinerisLtd/enveigle) which creates `site/.env` file from the settings in your `/trellis/group_vars/` directory.
